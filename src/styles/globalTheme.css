@@ -1,0 +1,36 @@
+:root {
+    --background-color: #EAF1F8;
+    --primary-color: #0032BD;
+    --text-color: #000;
+    --shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
+    ;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Exo', Courier, monospace
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    cursor:pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
