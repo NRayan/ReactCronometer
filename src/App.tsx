@@ -5,26 +5,25 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { useEventListener } from './hooks/useEventListerner';
 import "./styles/app.css";
 
-const ICON_PROPERTIES = { color: 'var(--primary-color)', size: "2rem" }
-const TIMEOUT_REFRESH_MILISECONDS = 35;
-
 export function App() {
+
+  const ICON_PROPERTIES = { color: 'var(--primary-color)', size: "2rem" }
+  const TIMEOUT_REFRESH_MILISECONDS = 35;
 
   const INITIAL_DATE = useRef(new Date().getTime());
 
   const [milisecondsDiference, setMilisecondsDiference] = useState<number | undefined>();
   const [stoped, setStoped] = useState(true);
-
-  const [minutes, seconds, miliseconds] = calculateValues();
+  const [minutes, seconds, miliseconds] = calculateValues(milisecondsDiference);
 
   //Custom hook that handle eventListerner without losing state reference;
   useEventListener("keydown", "Space", handleButtonClick);
 
-  function calculateValues(): [n1: number, n2: number, n3: number] {
-    if (!milisecondsDiference) return [0, 0, 0];
-    let minutes = Math.floor(milisecondsDiference / 60000);
-    let seconds = Math.floor(milisecondsDiference / 1000) % 60;
-    let miliseconds = Math.floor(milisecondsDiference % 1000);
+  function calculateValues(msDiference: number | undefined): [n1: number, n2: number, n3: number] {
+    if (!msDiference) return [0, 0, 0];
+    let minutes = Math.floor(msDiference / 60000);
+    let seconds = Math.floor(msDiference / 1000) % 60;
+    let miliseconds = Math.floor(msDiference % 1000);
     return [minutes, seconds, miliseconds];
   }
 
